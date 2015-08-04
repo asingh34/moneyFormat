@@ -1,0 +1,32 @@
+{
+  "name": "moneyFormat",
+  "version": "0.0.0",
+  "homepage": "https://github.com/anant1998/moneyFormat",
+  "description": "format money amounts based on currency specified",
+  "main": "moneyformat.js",
+  "moduleType": [
+    "globals",
+    "node"
+  ],
+  "keywords": [
+    "money",
+    "currency",
+    "rupee",
+    "dollar",
+    "million",
+    "lakh",
+    "crore",
+    "moneyformat"
+  ],
+  "authors": [
+    "anant singh"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

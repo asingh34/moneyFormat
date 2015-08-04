@@ -12,3 +12,5 @@ Usage
     node moneyformat.js INR 1000000
 
     10,00,000
+
+    etc.

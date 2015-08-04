@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='utf-8'/>
+        <title>Simple MoneyFormat example</title>
+        <style>
+            textarea {
+                padding: 10px;
+                vertical-align: top;
+                width: 200px;
+            }
+        </style>
+    </head>
+    <script src='../moneyformat.js'></script>
+    <body>
+        <table>
+            <tr>
+                <td>
+                    Amount
+                </td>
+                <td>
+                    Currency
+                </td>
+                <td>
+                    MoneyFormat
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    1000000
+                </td>
+                <td>
+                    USD
+                </td>
+                <td>
+                    <input type="button" onclick="alert(moneyFormat(1000000,'USD'))" />
+                </td>
+            </tr>
+
+        </table>
+    </body>
+</html>
+

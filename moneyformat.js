@@ -1,5 +1,11 @@
-function moneyFormat (x,symFunc) 
+function moneyFormat (x,currency) 
 {
+    var symFunc = moneyTable[currency];
+
+    if (symFunc == null) {
+        throw ('I do not recognize currenncy symbol ' + currency);
+    }
+
     var result ='';
    	
 	for (var i = x.length-1; i >= 0; i--) 
@@ -42,14 +48,6 @@ var moneyTable =
 
 var currency = process.argv[ 2 ] ;
 var s = process.argv[ 3 ] ;
-var func = moneyTable [ currency ] ;
-if ( func != null) 
-{
-    console.log (moneyFormat (s, func)); 
-
-}
-else {
-    throw ('I do not recognize currenncy symbol ' + currency);
-}
+console.log (moneyFormat (s, currency)); 
 
 

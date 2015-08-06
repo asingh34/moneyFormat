@@ -1,18 +1,61 @@
+
+var moneyTable = 
+{   
+    US: function(length,i) 
+        {
+            var result = null 
+            var dist = length-1-i;
+            if (dist>0  && (dist) % 3 === 0 )
+            {
+                result = ',';
+
+            }
+            return result; 
+        },    
+     DE: function(length,i) 
+        {
+            var result = null 
+            var dist = length-1-i;
+            if (dist>0  && (dist) % 3 === 0 )
+            {
+                result = '.';
+
+            }
+            return result; 
+        },    
+    IN: function(length,i) 
+        {
+            var result = null; 
+            var dist = length - 1 -i 
+            if ( dist  === 3 ) 
+            {
+                result = ',' ; 
+            } 
+            else if ( dist > 3 && ( dist-3) % 2 === 0 ) 
+            { 
+                result = ','; 
+            } 
+            return result; 
+
+        }
+}
+
 function moneyFormat (x,currency) 
 {
     var symFunc = moneyTable[currency];
 
     if (symFunc == null) {
-        throw ('I do not recognize currenncy symbol ' + currency);
+        throw ('I do not recognize country, use correct ISO-3166 code. ' + currency);
     }
 
     var result ='';
    	
 	for (var i = x.length-1; i >= 0; i--) 
 	{ 
-        if (symFunc (x.length, i)) 
+        var sym =symFunc (x.length, i); 
+        if ( sym != null) 
 		{
-			result = ',' + result; 
+			result = sym + result; 
 		}
 		result = x.charAt (i) + result;
 	}
@@ -20,31 +63,6 @@ function moneyFormat (x,currency)
     return result;
 
 }
-var moneyTable = 
-{   
-    USD: function(length,i) 
-        {
-            var dist = length-1-i;
-            return (dist>0  && (dist) % 3 === 0 );
-
-        },    
-    INR: function(length,i) 
-        {
-            var result = false; 
-            var dist = length - 1 -i 
-            if ( dist  === 3 ) 
-            {
-                result = true; 
-            } 
-            else if ( dist > 3 && ( dist-3) % 2 === 0 ) 
-            { 
-                result = true; 
-            } 
-            return result; 
-
-        }
-}
-
 
 var currency = process.argv[ 2 ] ;
 var s = process.argv[ 3 ] ;

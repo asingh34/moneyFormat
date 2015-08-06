@@ -1,49 +1,54 @@
-
-var moneyTable = 
-{   
-    US: function(length,i) 
+function format33 (length,i,sym)  
         {
-            var result = null 
+            var result = null; 
             var dist = length-1-i;
             if (dist>0  && (dist) % 3 === 0 )
             {
-                result = ',';
+                result = sym;
 
             }
             return result; 
-        },    
-     DE: function(length,i) 
-        {
-            var result = null 
-            var dist = length-1-i;
-            if (dist>0  && (dist) % 3 === 0 )
-            {
-                result = '.';
-
-            }
-            return result; 
-        },    
-    IN: function(length,i) 
+        }
+function format32 (length,i,sym)   
         {
             var result = null; 
             var dist = length - 1 -i 
             if ( dist  === 3 ) 
             {
-                result = ',' ; 
+                result = sym; 
             } 
             else if ( dist > 3 && ( dist-3) % 2 === 0 ) 
             { 
-                result = ','; 
+                result = sym; 
             } 
             return result; 
 
         }
-}
 
-function moneyFormat (x,currency) 
+
+var moneyTable = 
+{   
+    US:
+        {
+            func: format33, 
+            sym: ','
+        },    
+    DE:
+        {
+            func: format33,
+            sym: '.'
+        },    
+    IN:
+        {
+            func: format32,
+            sym: ',' 
+        },
+ }
+function moneyFormat (amount,currency) 
 {
-    var symFunc = moneyTable[currency];
-
+    var symFunc = moneyTable[currency].func;
+    var symbol = moneyTable[currency].sym;
+    var x = amount.toString();
     if (symFunc == null) {
         throw ('I do not recognize country, use correct ISO-3166 code. ' + currency);
     }
@@ -52,7 +57,7 @@ function moneyFormat (x,currency)
    	
 	for (var i = x.length-1; i >= 0; i--) 
 	{ 
-        var sym =symFunc (x.length, i); 
+        var sym =symFunc (x.length, i, symbol); 
         if ( sym != null) 
 		{
 			result = sym + result; 
@@ -63,6 +68,8 @@ function moneyFormat (x,currency)
     return result;
 
 }
+
+
 
 var currency = process.argv[ 2 ] ;
 var s = process.argv[ 3 ] ;

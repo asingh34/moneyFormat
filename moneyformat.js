@@ -42,8 +42,11 @@ var moneyTable =
         {
             func: format32,
             sym: ',' 
-        },
- }
+        } 
+        
+}
+moneyTable.SG = moneyTable.US;
+moneyTable.CA = moneyTable.US; 
 function moneyFormat (amount,currency) 
 {
     var symFunc = moneyTable[currency].func;

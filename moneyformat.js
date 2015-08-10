@@ -31,17 +31,25 @@ var moneyTable =
     US:
         {
             func: format33, 
-            sym: ','
+            sym: ',',
+            decSym: '.',
+            decPlaces: 2
         },    
     DE:
         {
             func: format33,
-            sym: '.'
+            sym: '.',
+            decSym: ',',
+            decPlaces: 2
+
         },    
     IN:
         {
             func: format32,
-            sym: ',' 
+            sym: ',', 
+            decSym: '.',
+            decPlaces: 2
+
         } 
         
 }
@@ -51,7 +59,16 @@ function moneyFormat (amount,currency)
 {
     var symFunc = moneyTable[currency].func;
     var symbol = moneyTable[currency].sym;
-    var x = amount.toString();
+    var places = moneyTable[currency].decPlaces; 
+    //console.log ( 'places =', places );
+    var decSym = moneyTable[currency].decSym; 
+    //console.log ( 'decSym =',decSym );
+    var x = parseInt(amount).toString() 
+    //console.log ( 'x =', x );
+    var y = amount - parseInt(amount); 
+    //console.log ( 'y =', y );
+    y = y.toString().substring(2,2+places); 
+    //console.log ( 'y =', y );
     if (symFunc == null) {
         throw ('I do not recognize country, use correct ISO-3166 code. ' + currency);
     }
@@ -67,7 +84,7 @@ function moneyFormat (amount,currency)
 		}
 		result = x.charAt (i) + result;
 	}
-	
+	result = result + decSym + y; 
     return result;
 
 }

@@ -33,14 +33,16 @@ var moneyTable =
             func: format33, 
             sym: ',',
             decSym: '.',
-            decPlaces: 2
+            decPlaces: 2,
+            currSym:'$'
         },    
     DE:
         {
             func: format33,
             sym: '.',
             decSym: ',',
-            decPlaces: 2
+            decPlaces: 2,
+            currSym:'€'
 
         },    
     IN:
@@ -48,13 +50,29 @@ var moneyTable =
             func: format32,
             sym: ',', 
             decSym: '.',
-            decPlaces: 2
+            decPlaces: 2,
+            currSym:'₹'
 
         } 
         
 }
-moneyTable.SG = moneyTable.US;
-moneyTable.CA = moneyTable.US; 
+function setMoneyTable (copy, base, options)
+{
+
+    moneyTable[copy] = {}; 
+    for (var x in moneyTable [base]) 
+    {
+        moneyTable [copy] [x] = moneyTable [base] [x];  
+    }
+    for (var y in options) 
+    {
+        moneyTable [copy] [y] = options [y];
+    }
+
+} 
+setMoneyTable('SG', 'US'); 
+setMoneyTable('CA', 'US');
+setMoneyTable('FR', 'US',{currSym:'€'}); 
 function moneyFormat (amount,currency) 
 {
     var symFunc = moneyTable[currency].func;
@@ -62,13 +80,14 @@ function moneyFormat (amount,currency)
     var places = moneyTable[currency].decPlaces; 
     //console.log ( 'places =', places );
     var decSym = moneyTable[currency].decSym; 
+    var currSym = moneyTable[currency].currSym; 
     //console.log ( 'decSym =',decSym );
     var x = parseInt(amount).toString() 
     //console.log ( 'x =', x );
     var y = amount - parseInt(amount); 
     //console.log ( 'y =', y );
-    y = y.toString().substring(2,2+places); 
-    //console.log ( 'y =', y );
+    y = y.toString().substring(2,2+places) 
+    //console.log ( 'y =', y )
     if (symFunc == null) {
         throw ('I do not recognize country, use correct ISO-3166 code. ' + currency);
     }
@@ -84,7 +103,7 @@ function moneyFormat (amount,currency)
 		}
 		result = x.charAt (i) + result;
 	}
-	result = result + decSym + y; 
+	result = currSym + ' ' + result + decSym + y; 
     return result;
 
 }

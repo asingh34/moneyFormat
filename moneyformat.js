@@ -26,7 +26,7 @@ function format32 (length,i,sym)
         }
 
 
-var moneyTable = 
+var moneyTemplates = 
 {   
     US:
         {
@@ -54,33 +54,68 @@ var moneyTable =
             currSym:'₹'
 
         } 
-        
-}
-function setMoneyTable (copy, base, options)
+};
+   
+var moneyTable = 
+
+{
+    US:function()
+       
+        {
+           return  getMoneyTable ('US');    
+        },
+    DE:function()
+       
+        {
+           return  getMoneyTable ('DE');    
+        },
+    IN:function()
+       
+        {
+           return  getMoneyTable ('IN');    
+        },
+    SG:function()
+       
+        {
+           return  getMoneyTable ('US');    
+        },
+
+    CA:function()
+       
+        {
+           return  getMoneyTable ('US');    
+        },
+
+    FR:function()
+       
+        {
+           return  getMoneyTable ('US',{currSym:'€'})
+
+        }
+};
+function getMoneyTable (base, options)
 {
 
-    moneyTable[copy] = {}; 
-    for (var x in moneyTable [base]) 
+    var result = {}; 
+    for (var x in moneyTemplates [base]) 
     {
-        moneyTable [copy] [x] = moneyTable [base] [x];  
+        result [x] = moneyTemplates [base] [x];  
     }
     for (var y in options) 
     {
-        moneyTable [copy] [y] = options [y];
+        result [y] = options [y];
     }
-
+    return result;
 } 
-setMoneyTable('SG', 'US'); 
-setMoneyTable('CA', 'US');
-setMoneyTable('FR', 'US',{currSym:'€'}); 
 function moneyFormat (amount,currency) 
 {
-    var symFunc = moneyTable[currency].func;
-    var symbol = moneyTable[currency].sym;
-    var places = moneyTable[currency].decPlaces; 
+    var moneyObj = moneyTable[currency](); 
+    var symFunc = moneyObj.func;
+    var symbol = moneyObj.sym;
+    var places = moneyObj.decPlaces; 
     //console.log ( 'places =', places );
-    var decSym = moneyTable[currency].decSym; 
-    var currSym = moneyTable[currency].currSym; 
+    var decSym = moneyObj.decSym; 
+    var currSym = moneyObj.currSym; 
     //console.log ( 'decSym =',decSym );
     var x = parseInt(amount).toString() 
     //console.log ( 'x =', x );

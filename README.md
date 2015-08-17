@@ -11,7 +11,13 @@ Usage
     
     node moneyformat.js IN 1000000
 
-    Rs. 10,00,000
+    ₹ 10,00,000
 
-   
+Countries supported
+-------------------
+
      USA, CANADA, INDIA, DEUTSCHLNAD, SINGAPORE 
+
+Documentation and Samples
+-------------------
+    http://anant1998.github.io

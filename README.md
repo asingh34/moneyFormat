@@ -6,11 +6,11 @@ Usage
 
     node moneyformat.js USD 1000000
 
-    1,000,000
+    $ 1,000,000
 
     
     node moneyformat.js INR 1000000
 
-    10,00,000
+    Rs. 10,00,000
 
     etc.

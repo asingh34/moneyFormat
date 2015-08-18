@@ -144,9 +144,14 @@ function moneyFormat (amount,currency)
 }
 
 
+if (process != null) { // we are called from command line 
+    var currency = process.argv[ 2 ] ;
+    var s = process.argv[ 3 ] ;
+    console.log (moneyFormat (s, currency)); 
+}
+// do nothing if included as a module, wait for moneyFormat method to be called
+// TODO : npm module mechanism integration
 
-var currency = process.argv[ 2 ] ;
-var s = process.argv[ 3 ] ;
-console.log (moneyFormat (s, currency)); 
+    
 
 

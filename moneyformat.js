@@ -144,7 +144,7 @@ function moneyFormat (amount,currency)
 }
 
 
-if (process != null) { // we are called from command line 
+if (typeof process !== 'undefined') { // we are called from command line 
     var currency = process.argv[ 2 ] ;
     var s = process.argv[ 3 ] ;
     console.log (moneyFormat (s, currency)); 

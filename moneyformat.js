@@ -91,6 +91,11 @@ var moneyTable =
         {
            return  getMoneyTable ('US',{currSym:'€'})
 
+        },
+    ES: function ()
+
+        {
+            return getMoneyTable( 'DE' )
         }
 };
 function getMoneyTable (base, options)

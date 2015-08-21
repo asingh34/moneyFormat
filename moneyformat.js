@@ -96,7 +96,22 @@ var moneyTable =
 
         {
             return getMoneyTable( 'DE' )
+        },
+
+    GB:function()
+       
+        {
+           return  getMoneyTable ('US',{currSym:'£'})
+        },
+
+    SE:function()
+       
+        {
+           return  getMoneyTable ('DE',{currSym:'kr',sym:' '})
         }
+
+
+
 };
 function getMoneyTable (base, options)
 {
@@ -128,6 +143,10 @@ function moneyFormat (amount,currency)
     //console.log ( 'y =', y );
     y = y.toString().substring(2,2+places) 
     //console.log ( 'y =', y )
+    if ( y === '') 
+    {
+        y = '00';
+    }   
     if (symFunc == null) {
         throw ('I do not recognize country, use correct ISO-3166 code. ' + currency);
     }

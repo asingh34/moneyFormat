@@ -16,7 +16,7 @@ Usage
 Countries supported
 -------------------
 
-     USA, CANADA, INDIA, DEUTSCHLNAD, SINGAPORE 
+     USA, CANADA, INDIA, DEUTSCHLNAD, SINGAPORE, SPAIN, SWEDEN, GREAT BRITAIN  
 
 Documentation and Samples
 -------------------
